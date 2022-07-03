@@ -2,315 +2,316 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        body {
-            height: 200px;
-            background-color: beige;
-        }
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      height: 200px;
+      background-color: beige;
+    }
 
-        .dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 9999px;
-            background-color: violet;
-            position: absolute;
-        }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 9999px;
+      background-color: violet;
+      position: absolute;
+    }
 
-        html {
-            user-select: none;
-        }
 
-        .svg-wrapper {
-            border: 5px solid;
-            display: inline-block;
-        }
+    html {
+      /* 整个页面里什么都不能选中 */
+      user-select: none;
+    }
 
-        .svg-wrapper svg {
-            display: block;
-        }
+    .svg-wrapper {
+      border: 5px solid;
+      /* div没有那么宽，让它变成和svg一样，里面有多大，div就包多大*/
+      display: inline-block;
+    }
 
-        .colors button {
-            width: 20px;
-            height: 20px;
-            border: 2px solid grey;
-            border-radius: 5px;
-        }
+    .svg-wrapper svg {
+      display: block;
+    }
 
-        .colors button.selected {
-            outline: 2px solid;
-        }
+    .colors button {
+      width: 20px;
+      height: 20px;
+      border: 2px solid grey;
+      border-radius: 5px;
+    }
 
-        .selected-colors.selected {
-            outline: 2px solid #808080;
-        }
-    </style>
+    .colors button.selected {
+      outline: 2px solid #808080;
+    }
+
+    .selected-colors.selected {
+      outline: 2px solid #808080;
+    }
+  </style>
 </head>
 
 <body>
-    <div class="colors">
-        <button class="color" style="background-color:black"></button>
-        <button class="color" style="background-color:transparent"></button>
-        <button class="color" style="background-color:white"></button>
-        <button class="color" style="background-color:aquamarine"></button>
-        <button class="color" style="background-color:brown"></button>
-        <button class="color" style="background-color:yellowgreen"></button>
-        <button class="color" style="background-color:violet"></button>
-        <button class="color" style="background-color:tomato"></button>
-        <input type="color" id="colorSelect" value="#ff0000">
-        <span class="selected-colors selected" id="color1" style="background-color: black;">颜色1</span>
-        <span class="selected-colors" id="color2" style="background-color: white;">颜色2</span>
-    </div>
+  <div class="colors">
+    <button class="color" style="background-color:black"></button>
+    <button class="color" style="background-color:transparent"></button>
+    <button class="color" style="background-color:white"></button>
+    <button class="color" style="background-color:aquamarine"></button>
+    <button class="color" style="background-color:brown"></button>
+    <button class="color" style="background-color:yellowgreen"></button>
+    <button class="color" style="background-color:violet"></button>
+    <button class="color" style="background-color:tomato"></button>
+    <input type="color" id="colorSelect" value="#ff0000">
+    <span class="selected-colors selected" id="color1" style="background-color: black;">前景色</span>
+    <span class="selected-colors" id="color2" style="background-color: white;">背景色</span>
+  </div>
 
-    <input type="range" id="strokeWidthSelect" value="3" min="1" max="20" step="1">
+  <input type="range" id="strokeWidthSelect" value="3" min="1" max="20" step="1">
 
-    <hr>
+  <hr>
 
-    <button onclick="tool='line'">线</button>
-    <button onclick="tool='rect'">框</button>
-    <button onclick="tool='circle'">〇</button>
+  <button onclick="tool='line'">线</button>
+  <button onclick="tool='rect'">框</button>
+  <button onclick="tool='circle'">〇</button>
 
+  <div class="svg-wrapper">
+    <!-- 要加 version="1.1" xmlns="http://www.w3.org/2000/svg"，不然下载下来的图片不显示 -->
+    <!-- <?xml version="1.1"?>   -->
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="800px" height="800px"></svg> <!-- svg是一个行内元素 -->
+  </div>
 
-    <div class="svg-wrapper">
-        <!-- 要加 version="1.1" xmlns="http://www.w3.org/2000/svg"，不然下载下来的图片不显示 -->
-        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="800px" height="800px"></svg>
-    </div>
-    <button id="save-file">保存</button>
-    <script>
-        var config = {
-            color1: 'black',
-            color2: 'transparent',
-            tool: 'line',
-            setColor: 'color1', // 意思是点击颜色时设置的是color1还是color2
+  <button id="save-file">保存</button>
+  <script>
+    // 全局对象：
+    var config = {
+      color1: 'black',
+      color2: 'transparent',
+      tool: 'line',
+      setColor: 'color1'   //  点击颜色时设置的是color1还是color2
+    }
+
+    var svg = document.querySelector('svg')
+
+    var colorSelect = document.querySelector('#colorSelect')
+    var saveFile = document.querySelector('#save-file')
+    var strokeWidthSelect = document.querySelector('#strokeWidthSelect')
+
+    var lastX, lastY   // 鼠标相对于svg的坐标
+
+    var node
+    var tool = 'line'
+    var startPos    // 记录鼠标按下时的位置
+
+    var color1Show = document.querySelector('#color1')
+    var color2Show = document.querySelector('#color2')
+    var colorsDiv = document.querySelector('.colors')
+
+    colorSelect.addEventListener('change', function (e) {  // 复杂的颜色选择器被点击时会触发一个change事件
+      // 下面四行代码是为了消掉其他颜色的边框：
+      var colorButtons = document.querySelectorAll('.colors button.color')  // 选中colors下的带color类名的button
+      for (var btn of colorButtons) {
+        btn.classList.remove('selected')  // 删除所有button的selected类名
+      }
+      setColor(config.setColor, e.target.value) //  颜色器本来就有value，直接读取
+    })
+
+    color1Show.addEventListener('click', function () {
+      config.setColor = 'color1'
+      color1Show.classList.add('selected')      // 增加一个类名
+      color2Show.classList.remove('selected')   // 并删除另一个类名
+    })
+
+    color2Show.addEventListener('click', function () {
+      config.setColor = 'color2'
+      color2Show.classList.add('selected')      // 增加一个类名
+      color1Show.classList.remove('selected')   // 并删除另一个类名
+    })
+
+    colorsDiv.addEventListener('click', function (e) {
+      if (e.target.matches('button.color')) {     // 如果你点了有color类名的button
+        var colorButtons = document.querySelectorAll('.colors button.color')  // 选中colors下的带color类名的button
+        for (var btn of colorButtons) {
+          btn.classList.remove('selected')  // 删除所有button的selected类名
         }
-        var svg = document.querySelector('svg')
-        var colorSelect = document.querySelector('#colorSelect')
-        var saveFile = document.querySelector('#save-file')
-        var strokeWidthSelect = document.querySelector('#strokeWidthSelect')
+        e.target.classList.add('selected')   // 给带color的button加selected类名
+        setColor(config.setColor, e.target.style.backgroundColor)  // 直接读它的样式
+      }
+    })
 
-        var lastX, lastY
-
-        var node
-        var tool = 'line'
-        var startPos  // 记录鼠标按下时的位置
-
-
-        //   选色：
-        var color1Show = document.querySelector('#color1')
-        var color2Show = document.querySelector('#color2')
-        var colorsDiv = document.querySelector('.colors')
+    // 设置颜色：
+    function setColor(colorName, value) {  //  colorName:要设置的对象
+      config[colorName] = value   // 改变全局的color的属性
+      document.querySelector('#' + colorName).style.backgroundColor = value  // 通过这样的方式找到第几个颜色的显示
+    }
 
 
-        colorSelect.addEventListener('change', function (e) {
-            var colorButtons = document.querySelectorAll('.colors button.color')
-            for (var btn of colorButtons) {
-                btn.classList.remove('selected')
-            }
-            setColor(config.setColor, e.target.value)
-        })
-        color1Show.addEventListener('click', function () {
-            config.setColor = 'color1'
-            color1Show.classList.add('selected')
-            color2Show.classList.remove('selected')
-        })
-        color2Show.addEventListener('click', function () {
-            config.setColor = 'color2'
-            color2Show.classList.add('selected')
-            color1Show.classList.remove('selected')
-        })
+    svg.addEventListener('mousedown', function (e) {   // 鼠标按下
+      if (e.which == 1) {   // 如果按下左键
 
-        colorsDiv.addEventListener('click', function (e) {
-            if (e.target.matches('button.color')) {
-                var colorButtons = document.querySelectorAll('.colors button.color')
-                for (var btn of colorButtons) {
-                    btn.classList.remove('selected')
-                }
-                e.target.classList.add('selected')
-                setColor(config.setColor, e.target.style.backgroundColor)
-            }
-        })
+        var pos = mouse(svg)  // 始终获取svg元素里的位置
+        startPos = pos
 
-        function setColor(colorName, value) {
-            config[colorName] = value
-            document.querySelector('#' + colorName).style.backgroundColor = value
-        }
-
-        svg.addEventListener('mousedown', function (e) {
-            if (e.which == 1) {
-                var pos = mouse(svg, e)
-                startPos = pos
-                //  画线：
-                if (tool == 'line') {
-                    node = svgElt('path', {
-                        d: `M ${pos.x} ${pos.y} L ${pos.x} ${pos.y}`,
-                        stroke: config.color1,
-                        fill: config.color2,
-                        'stroke-width': strokeWidthSelect.value,
-                        'stroke-linecap': 'round',
-                    })
-                    svg.appendChild(node)
-                }
-                saved = false
-
-                //   画框：
-                if (tool == 'rect') {
-
-                    node = svgElt('rect', {
-                        x: pos.x,
-                        y: pos.y,
-                        width: 0,
-                        height: 0,
-                        stroke: config.color1,
-                        fill: config.color2,
-                        'stroke-width': strokeWidthSelect.value,
-                        'stroke-linecap': 'round',
-                    })
-                    svg.appendChild(node)
-
-                }
-
-                //  画圆：
-                if (tool == 'circle') {
-                    node = svgElt('ellipse', {
-                        cx: pos.x,
-                        cy: pos.y,
-                        rx: 0,
-                        ry: 0,
-                        stroke: config.color1,
-                        fill: config.color2,
-                        'stroke-width': strokeWidthSelect.value,
-                        'stroke-linecap': 'round',
-                    })
-                    svg.appendChild(node)
-                }
-
-                window.addEventListener('mousemove', onMove, 200)
-                // e.preventDefault()   // 写了 user-select: none，可以不写这句
-            }
-        })
-
-
-
-        function throttle(func, time) {
-            var timeout
-            var scheduled = false
-            var event
-            return function (e) {
-                event = e
-                //clearTimeout(timeout)
-                if (!scheduled) {
-                    scheduled = true
-                    timeout = setTimeout(() => {
-                        func.call(this, event)
-                        scheduled = false
-                    }, time)
-                }
-            }
+        // 如果选择了‘线’：
+        if (tool == 'line') {
+          // 移动的时候创建出一个path的标签：
+          node = svgElt('path', {
+            d: `M ${pos.x} ${pos.y} L ${pos.x} ${pos.y}`,   // 只要开始画，就从M点开始画到L点结束的位置
+            stroke: config.color1,                      // 线的颜色
+            fill: config.color2,                        // 线的填充
+            'stroke-width': strokeWidthSelect.value,    // 线的宽度
+            'stroke-linecap': 'round'                   // 线的头尾部的形状为圆形
+          })
+          svg.appendChild(node)
         }
 
+        saved = false  // 一旦画过就变成false  
 
-        function onMove(e) {
-            if (!buttonPressed(e)) {
-                console.log('release')
-                window.removeEventListener('mousemove', onMove)
-                return
-            }
-
-            var pos = mouse(svg, e)
-
-            if (tool == 'line') {
-                var d = node.getAttribute('d')
-                d += `L ${pos.x} ${pos.y}`
-                node.setAttribute('d', d)
-            }
-
-            if (tool == 'rect') {
-                var width = pos.x - startPos.x
-                var height = pos.y - startPos.y
-                node.setAttribute('width', width)
-                node.setAttribute('height', height)
-            }
-
-            if (tool == 'circle') {
-                var cx = (pos.x + startPos.x) / 2
-                var cy = (pos.y + startPos.y) / 2
-                var rx = pos.x - startPos.x
-                var ry = pos.y - startPos.y
-                node.setAttribute('cx', cx)
-                node.setAttribute('cy', cy)
-                node.setAttribute('rx', rx)
-                node.setAttribute('ry', ry)
-            }
+        // 如果选择了‘框’：
+        if (tool == 'rect') {
+          // 移动的时候创建出一个rect的标签：
+          node = svgElt('rect', {
+            x: pos.x,
+            y: pos.y,
+            width: 0,
+            height: 0,
+            stroke: config.color1,                      // 线的颜色
+            fill: config.color2,                        // 线的填充
+            'stroke-width': strokeWidthSelect.value,    // 线的宽度
+            'stroke-linecap': 'round'                   // 线的头尾部的形状为圆形
+          })
+          svg.appendChild(node)
         }
 
-
-        //   撤销：
-
-        window.addEventListener('keydown', function (e) {
-            if (e.ctrlKey && e.key == 'z') {
-                svg.removeChild(svg.lastChild)
-            }
-        })
-
-
-        var saved = true
-        window.onbeforeunload = function (e) {
-            // if (!saved) {
-            e.returnValue = '作品未保存，确定退出吗？'
-            return '作品未保存，确定退出吗？'
-            // }
+        // 如果选择了‘圆’：
+        if (tool == 'circle') {
+          // 移动的时候创建出一个ellipse的标签：
+          node = svgElt('ellipse', {
+            cx: pos.x,
+            cy: pos.y,
+            rx: 0,
+            ry: 0,
+            stroke: config.color1,                      // 线的颜色
+            fill: config.color2,                        // 线的填充
+            'stroke-width': strokeWidthSelect.value,    // 线的宽度
+            'stroke-linecap': 'round'                   // 线的头尾部的形状为圆形
+          })
+          svg.appendChild(node)
         }
 
+        // 起点一定要在svg上，终点不一定（当鼠标移除svg的范围，再移回来的时候不会使两条线自动连接）
+        window.addEventListener('mousemove', onMove)   // 让鼠标移动
+      }
+    })
 
-        //   下载保存的固定代码：
-        saveFile.addEventListener('click', function (e) {
-            //  创建一个blob对象：创建一个文件 ，[svg.outerHTML] 是文件内容片段，{type: 'image/svg+xml'} 文件类型
-            var blob = new Blob(['<?xml version="1.1"?>', svg.outerHTML], { type: 'image/svg+xml' })
-            var link = URL.createObjectURL(blob)
-            var anchor = document.createElement('a')
-            anchor.href = link
-            anchor.download = '您的大作.svg'
-            //  当带有 download 属性的 anchor 被点击了就会触发下载：
-            anchor.click()
-            saved = true
-        })
 
-        function mouse(node, event = window.event) {
-            var nodePos = node.getBoundingClientRect()
-            return {
-                x: window.event.clientX - nodePos.x,
-                y: window.event.clientY - nodePos.y,
-            }
+
+    function onMove(e) {
+      if (!buttonPressed(e)) {   // 如果move的时候鼠标松手了就解绑
+        window.removeEventListener('mousemove', onMove)    // 从window上绑定也要从window上解绑
+        return
+      }
+
+      var pos = mouse(svg)  // 拿到鼠标当前元素的坐标
+
+      // 如果是画线：
+      if (tool == 'line') {
+        // 找到正在操作的节点，然后取出d属性，再给d属性加一个
+        var d = node.getAttribute('d')
+        d += `L ${pos.x} ${pos.y}`
+        node.setAttribute('d', d)   // d属性的值等于现在新的d
+      }
+
+      // 如果是画框：
+      if (tool == 'rect') {
+        var width = pos.x - startPos.x
+        var height = pos.y - startPos.y
+        node.setAttribute('width', width)   // 让宽等于现在的宽
+        node.setAttribute('height', height) // 让高等于现在的高
+      }
+
+      // 如果是画圆：
+      if (tool == 'circle') {
+        var cx = (pos.x + startPos.x) / 2
+        var cy = (pos.y + startPos.y) / 2
+        var rx = pos.x - startPos.x
+        var ry = pos.y - startPos.y
+        node.setAttribute('cx', cx)
+        node.setAttribute('cy', cy)
+        node.setAttribute('rx', rx)
+        node.setAttribute('ry', ry)
+      }
+    }
+
+
+
+    // 撤销操作：
+    window.addEventListener('keydown', function (e) {
+      if (e.ctrlKey && e.key == 'z') {   // 当按下ctrl+z时做撤销操作
+        svg.removeChild(svg.lastChild)
+      }
+    })
+
+
+    // 保存：
+    var saved = true
+    window.onbeforeunload = function (e) {
+      if (!saved) {  // 如果画过，并且未保存
+        e.returnValue = '作品未保存，确定退出吗？'
+      }
+    }
+
+
+    saveFile.addEventListener('click', function (e) {
+      var blob = new Blob([svg.outerHTML], { type: 'image/svg+xml' })  // 创建一个blob对象（创建一个文件内容片段，类型是image/svg+xml）
+      var link = URL.createObjectURL(blob)    // 创建一个东西的文件,这里传一个blob对象
+      var anchor = document.createElement('a')
+      anchor.href = link
+      anchor.download = '您的大作.svg'   // 保存的文件名叫“您的大作”
+      anchor.click()  //  触发点击(当一个带有download的anchor被点击就会触发下载)
+      saved = true  // 只要保存过一次，就要重新变成true
+    })
+
+
+    // 传什么元素，就返回鼠标在哪个元素上的坐标：
+    function mouse(node) {   // 这个函数只需要接收一个元素
+      var nodePos = node.getBoundingClientRect()
+      return {
+        x: window.event.clientX - nodePos.x,
+        y: window.event.clientY - nodePos.y
+      }
+    }
+
+
+
+    // 松开：
+    function buttonPressed(event) {
+      if (event.buttons == null) {
+        return event.which !== 0
+      } else {
+        return event.buttons !== 0
+      }
+    }
+
+
+    function svgElt(tagName, attrs = {}, ...children) {
+      var node = document.createElementNS('http://www.w3.org/2000/svg', tagName)   //  创建tagName标签
+      // attrs = {}：第二个参数
+      for (key in attrs) {
+        var val = attrs[key]
+        node.setAttribute(key, val)  // 设置node的属性
+      }
+      // ...children：第三个参数
+      for (var child of children) {
+        if (typeof child == 'string') {
+          child = document.createTextNode(child)   // 用字符串创建一个文本节点
         }
-
-        //   松开：
-
-        function buttonPressed(event) {
-            if (event.buttons == null) {
-                return event.which !== 0
-            } else {
-                return event.buttons !== 0
-            }
-        }
-
-        function svgElt(tagName, attrs = {}, ...children) {
-            var node = document.createElementNS('http://www.w3.org/2000/svg', tagName)
-            for (var key in attrs) {
-                var val = attrs[key]
-                node.setAttribute(key, val)
-            }
-            for (var child of children) {
-                if (typeof child == 'string') {
-                    child = document.createTextNode(child)
-                }
-                node.appendChild(child)
-            }
-            return node
-        }
-    </script>
+        node.appendClid(child)
+      }
+      return node
+    }
+  </script>
 </body>
 
 </html>
