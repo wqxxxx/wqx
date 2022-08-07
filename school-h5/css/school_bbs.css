@@ -1,0 +1,141 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+.header img {
+  width: 100%;
+}
+
+.div1 {
+  background-color: rgb(227, 227, 227);
+  padding-top: 0.15rem;
+}
+
+.title {
+  height: 1.5rem;
+  background-color: white;
+  font-size: 0.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 0.15rem;
+}
+
+.cirlabel {
+  border: 1px solid orange;
+  height: 0.2rem;
+  width: 0.2rem;
+  background: orange;
+  display: inline-block;
+  margin-top: -0.1rem;
+  vertical-align: middle;
+}
+
+.bottom {
+  background-color: #fff;
+  display: none;
+}
+
+.outhref {
+  position: fixed;
+  right: 0.2rem;
+  bottom: 4.6rem;
+  width: 1.3rem;
+  height: 1.3rem;
+}
+
+.outhref img {
+  width: 100%;
+  height: 100%;
+}
+
+.datadiv {
+  display: flex;
+  flex-direction: column;
+  padding-top: 0.5rem;
+  margin: 0 0.4rem;
+  border-bottom: 1px solid #404040;
+}
+
+.datadiv:nth-last-child(1) {
+  border-bottom: none;
+}
+
+.hdata {
+  font-size: 0.4rem;
+}
+
+.spandata {
+  font-size: 0.3rem;
+  text-align: justify;
+  color: #707070;
+  text-indent: 0.5rem;
+  padding-right: 0.35rem;
+  margin: 0.2rem 0 0.5rem;
+}
+
+.imgdiv {
+  display: flex;
+  justify-content: space-around;
+  font-size: 0.2rem;
+  margin-bottom: 0.45rem;
+}
+
+.imgdiv a img {
+  width: 0.4rem;
+  height: 0.4rem;
+  margin-right: 0.1rem;
+}
+
+.imgdiv a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 模态框 */
+.shadow_css {
+  display: none;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index: 100;
+  /* 为mozilla firefox 设置透明度  */
+  -moz-opacity: 0.6;
+  /* 设置透明度 */
+  opacity: 0.5;
+  /* 为IE 设置透明度  */
+  filter: alpha(opacity=50);
+}
+
+.window_css {
+  display: none;
+  position: absolute;
+  top: 0%;
+  left: 40%;
+  width: 60%;
+  height: 100%;
+  border: 1px solid #ccc;
+  background-color: aliceblue;
+  z-index: 999999;
+}
+
+.window_css a {
+  position: absolute;
+  right: 0.35rem;
+  top: 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+

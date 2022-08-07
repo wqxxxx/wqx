@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- 悦学习首页 -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./css/study.css">
+    <title>Document</title>
+    <script src="./index.js"></script>
+</head>
+
+<body>
+    <div id="slider"></div>
+
+
+    <!-- 列表 -->
+    <div class="list">
+        <div class="title_div">
+            <span class="title_school">书香校园</span>
+            <a href="https://book.yunzhan365.com/bookcase/glic/index.html">
+                <span class="title_more">更多>></span>
+            </a>
+        </div>
+        <div class="list_flex">
+            <div class="content">
+                <img src="./pic/study/a.png" alt="">
+                <div class="content_div">
+                    <div>
+                        <div class="f1">历史的起源与目标</div>
+                        <div class="f2">更新时间:2022.01.08</div>
+                        <div class="f3">浏览人次 <span>135次</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+                <img src="./pic/study/b.png" alt="">
+                <div class="content_div">
+                    <div>
+                        <div class="f1">中共中央在延安</div>
+                        <div class="f2">更新时间:2022.01.09</div>
+                        <div class="f3">浏览人次 <span>85次</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+                <img src="./pic/study/c.png" alt="">
+                <div class="content_div">
+                    <div>
+                        <div class="f1">万历十五年</div>
+                        <div class="f2">更新时间:2021.11.23</div>
+                        <div class="f3">浏览人次 <span>135次</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        var pic = [
+            {
+                swiper: "./swiper/1.jpg",
+            },
+            {
+                swiper: "./swiper/2.jpg",
+            },
+            {
+                swiper: "./swiper/3.jpg",
+            },
+            {
+                swiper: "./swiper/4.jpg",
+            }
+        ]
+
+        var slider = document.getElementById('slider')
+        function render() {
+            var arr = `<ul class="slider-list">
+            ${pic.map(item =>
+                `<li>
+                    <a href="./study_list.html">
+                        <img src="${item.swiper}">
+                    </a>
+            </li>`
+            ).join('')}
+            <li>
+                <a href="./study_list.html"><img src="./swiper/1.jpg"></a>
+            </li>
+            </ul >
+            <div class="dot-list">
+               ${pic.map((item, index) =>
+                `<span onclick="circlick(${index})" class="dot"></span>`
+            ).join('')}
+            </div>
+            `
+            slider.innerHTML = arr
+        }
+        render()
+
+
+        var slid = document.getElementById('slider');
+        var slidLis = slid.getElementsByTagName('ul')[0];
+        var slidLi = slidLis.getElementsByTagName('li');
+
+        var index = 0;
+        function lun() {
+            index++;
+            circe();
+            slidLis.style.left = index * -100 + "%";
+            slidLis.style.transition = "all 1s";
+            if (index === slidLi.length - 1) {
+                index = 0;
+                setTimeout(function () {
+                    slidLis.style.left = 0;
+                    slidLis.style.transition = "none";
+                }, 1000)
+            }
+            circe();
+        }
+
+        //  自动轮播
+        var autoplay = setInterval(lun, 3000);
+        slid.addEventListener("mouseenter", function () {
+            clearInterval(autoplay);
+        });
+        slid.addEventListener("mouseleave", function () {
+            clearInterval;
+            autoplay = setInterval(lun, 3000);
+        })
+
+        //圆点
+        var dotList = document.getElementsByTagName('span');
+        function circe() {
+            for (var i = 0; i < dotList.length; i++) {
+                if (i === index) {
+                    dotList[i].classList.add("cur");
+                } else {
+                    dotList[i].classList.remove("cur");
+                }
+            }
+        }
+        dotList[0].classList.add("cur");
+
+
+        //圆点点击事件：
+        function circlick(data) {
+            let cir = document.getElementsByClassName('dot');
+            console.log(data);
+            slidLis.style.left = data * -100 + "%";
+            for (let i = 0; i < cir.length; i++) {
+                dotList[i].classList.remove("cur");
+            }
+            dotList[data].classList.add("cur");
+            index = data;
+
+
+            clerSettimeout();
+
+            function clerSettimeout() {
+                let id = setInterval(() => { }, 0);
+                while (id > 0) {
+                    window.clearInterval(id)
+                    id--;
+                    // console.log(1);
+                }
+            }
+
+            setTimeout(() => {
+                let autoplay = setInterval(lun, 3000);
+            }, 1500);
+        }
+
+
+
+    </script>
+</body>
+
+</html>

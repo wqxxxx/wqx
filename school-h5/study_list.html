@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- 悦学习---习语 -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" /> -->
+
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/study_list.css">
+    <script src="./index.js"></script>
+</head>
+
+<body>
+    <div class="div1">
+        <div class="title">
+            <p>
+                <label class="cir cirlabel"></label>《求是》
+            </p>
+            <p>
+                <label class="cir"></label> 人权保障
+            </p>
+            <p>
+                <label class="cir"></label> 伟大建党精神
+            </p>
+            <p>
+                <label class="cir"></label> 数字化
+            </p>
+        </div>
+
+        <div class="tab_list">
+            <div class="bottom" style="display: block">
+                <div class="content">
+                    <div class="content_div">
+                        <img src="./pic/study-list/1.png" alt="">
+                    </div>
+                    <div class="content_right">
+                        <span>树立和践行正确政绩观，起决定性作用的是党性。只有党性坚强、摒弃私心杂念，才能保证政绩观念不出偏差。中共党人必须牢记，为民造福是最大政绩。</span>
+                        <span>-—2022年3月1日，习近平总书记在中夹党校（国家行政学院）中青年千部培训班开班式上发表重要讲话强调</span>
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="content_div">
+                        <img src="./pic/study-list/2.png" alt="">
+                    </div>
+                    <div class="content_right">
+                        <span>尊重和保障人权是中国共产党人的不懈追求。党的百年奋斗史，贯穿着党团结带领人民为争取人权、尊重人权、保障人权、发展人权而进行的不懈努力。</span>
+                        <span>——2022年2月25日，习近平总书记在中共中央政治局第三十七次集体学习时强调</span>
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="content_div">
+                        <img src="./pic/study-list/3.png" alt="">
+                    </div>
+                    <div class="content_right">
+                        <span>壬寅虎年,我们要以虎虎生威的雄风、生龙活虎的千劲、气吞万里如虎的精神，继续书写中国特色社会主义伟大事业的历史新篇章！</span>
+                        <span>——2022年1月30日，习近平总书记在2022年春节团拜会上发表的重要讲话中指出</span>
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="content_div">
+                        <img src="./pic/study-list/4.png" alt="">
+                    </div>
+                    <div class="content_right">
+                        <span>一个民族要走在时代前列，就一刻不能没有理论思维，一刻不能没有正确思想指引。</span>
+                        <span>-—2022年3月1日，习近平总书记在中夹党校（国家行政学院）中青年千部培训班开班式上发表重要讲话强调</span>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom"></div>
+            <div class="bottom"></div>
+            <div class="bottom"></div>
+        </div>
+    </div>
+
+
+    <script>
+        var dataStr = ''
+        var dataArr = [{
+            title: '第一页',
+            data: [
+                {
+                    img: './pic/study-list/1.png',
+                    span1: '树立和践行正确政绩观，起决定性作用的是党性。只有党性坚强、摒弃私心杂念，才能保证政绩观念不出偏差。中共党人必须牢记，为民造福是最大政绩。',
+                    span2: '—2022年3月1日，习近平总书记在中夹党校（国家行政学院）中青年千部培训班开班式上发表重要讲话强调',
+                },
+                {
+                    img: './pic/study-list/2.png',
+                    span1: '尊重和保障人权是中国共产党人的不懈追求。党的百年奋斗史，贯穿着党团结带领人民为争取人权、尊重人权、保障人权、发展人权而进行的不懈努力。',
+                    span2: '——2022年2月25日，习近平总书记在中共中央政治局第三十七次集体学习时强调',
+                },
+                {
+                    img: './pic/study-list/3.png',
+                    span1: '我们要以虎虎生威的雄风、生龙活虎的千劲、气吞万里如虎的精神，继续书写中国特色社会主义伟大事业的历史新篇章！',
+                    span2: '——2022年1月30日，习近平总书记在2022年春节团拜会上发表的重要讲话中指出',
+                },
+                {
+                    img: './pic/study-list/4.png',
+                    span1: '一个民族要走在时代前列，就一刻不能没有理论思维，一刻不能没有正确思想指引。',
+                    span2: '—2022年3月1日，习近平总书记在中夹党校（国家行政学院）中青年千部培训班开班式上发表重要讲话强调',
+                },
+            ]
+        },
+        {
+            title: '第二页',
+            data: [
+                {
+                    img: './pic/study-list/1.png',
+                    span1: '树立和践行正确政绩观，起决定性作用的是党性。只有党性坚强、摒弃私心杂念，才能保证政绩观念不出偏差。中共党人必须牢记，为民造福是最大政绩。',
+                    span2: '—2022年3月1日，习近平总书记在中夹党校（国家行政学院）中青年千部培训班开班式上发表重要讲话强调',
+                },
+                {
+                    img: './pic/study-list/2.png',
+                    span1: '尊重和保障人权是中国共产党人的不懈追求。党的百年奋斗史，贯穿着党团结带领人民为争取人权、尊重人权、保障人权、发展人权而进行的不懈努力。',
+                    span2: '——2022年2月25日，习近平总书记在中共中央政治局第三十七次集体学习时强调',
+                },
+                {
+                    img: './pic/study-list/3.png',
+                    span1: '我们要以虎虎生威的雄风、生龙活虎的千劲、气吞万里如虎的精神，继续书写中国特色社会主义伟大事业的历史新篇章！',
+                    span2: '——2022年1月30日，习近平总书记在2022年春节团拜会上发表的重要讲话中指出',
+                },
+                {
+                    img: './pic/study-list/4.png',
+                    span1: '一个民族要走在时代前列，就一刻不能没有理论思维，一刻不能没有正确思想指引。',
+                    span2: '—2022年3月1日，习近平总书记在中夹党校（国家行政学院）中青年千部培训班开班式上发表重要讲话强调',
+                },
+            ]
+        },
+        {
+            title: '第三页',
+            data: [
+                {
+                    img: './pic/study-list/1.png',
+                    span1: '树立和践行正确政绩观，起决定性作用的是党性。只有党性坚强、摒弃私心杂念，才能保证政绩观念不出偏差。中共党人必须牢记，为民造福是最大政绩。',
+                    span2: '—2022年3月1日，习近平总书记在中夹党校（国家行政学院）中青年千部培训班开班式上发表重要讲话强调',
+                },
+                {
+                    img: './pic/study-list/2.png',
+                    span1: '尊重和保障人权是中国共产党人的不懈追求。党的百年奋斗史，贯穿着党团结带领人民为争取人权、尊重人权、保障人权、发展人权而进行的不懈努力。',
+                    span2: '——2022年2月25日，习近平总书记在中共中央政治局第三十七次集体学习时强调',
+                },
+                {
+                    img: './pic/study-list/3.png',
+                    span1: '我们要以虎虎生威的雄风、生龙活虎的千劲、气吞万里如虎的精神，继续书写中国特色社会主义伟大事业的历史新篇章！',
+                    span2: '——2022年1月30日，习近平总书记在2022年春节团拜会上发表的重要讲话中指出',
+                },
+                {
+                    img: './pic/study-list/4.png',
+                    span1: '一个民族要走在时代前列，就一刻不能没有理论思维，一刻不能没有正确思想指引。',
+                    span2: '—2022年3月1日，习近平总书记在中夹党校（国家行政学院）中青年千部培训班开班式上发表重要讲话强调',
+                },
+            ]
+        },
+        {
+            title: '第四页',
+            data: [
+                {
+                    img: './pic/study-list/1.png',
+                    span1: '树立和践行正确政绩观，起决定性作用的是党性。只有党性坚强、摒弃私心杂念，才能保证政绩观念不出偏差。中共党人必须牢记，为民造福是最大政绩。',
+                    span2: '—2022年3月1日，习近平总书记在中夹党校（国家行政学院）中青年千部培训班开班式上发表重要讲话强调',
+                },
+                {
+                    img: './pic/study-list/2.png',
+                    span1: '尊重和保障人权是中国共产党人的不懈追求。党的百年奋斗史，贯穿着党团结带领人民为争取人权、尊重人权、保障人权、发展人权而进行的不懈努力。',
+                    span2: '——2022年2月25日，习近平总书记在中共中央政治局第三十七次集体学习时强调',
+                },
+                {
+                    img: './pic/study-list/3.png',
+                    span1: '我们要以虎虎生威的雄风、生龙活虎的千劲、气吞万里如虎的精神，继续书写中国特色社会主义伟大事业的历史新篇章！',
+                    span2: '——2022年1月30日，习近平总书记在2022年春节团拜会上发表的重要讲话中指出',
+                },
+                {
+                    img: './pic/study-list/4.png',
+                    span1: '一个民族要走在时代前列，就一刻不能没有理论思维，一刻不能没有正确思想指引。',
+                    span2: '—2022年3月1日，习近平总书记在中夹党校（国家行政学院）中青年千部培训班开班式上发表重要讲话强调',
+                },
+            ]
+        },
+        ]
+
+        var title = document.querySelector('.title')
+        var list = title.querySelectorAll('p')
+
+        var cir = document.querySelectorAll('.cir')
+
+        var tab_list = document.querySelectorAll('.bottom')
+
+        // 导航条切换：
+        for (var i = 0; i < list.length; i++) {
+            list[i].setAttribute('index', i)
+
+            list[i].onclick = function () {
+                var index = this.getAttribute('index')
+
+                // 导航条圆点切换:
+                for (var i = 0; i < cir.length; i++) {
+                    cir[i].classList.remove("cirlabel")
+                }
+                cir[index].setAttribute('class', 'cirlabel')
+
+                // 内容切换:
+                for (var i = 0; i < tab_list.length; i++) {
+                    tab_list[i].style.display = "none"
+                    document.getElementsByClassName('bottom')[i].innerHTML = ''
+                }
+                tab_list[index].style.display = 'block'
+
+                var dataStr = ''
+                var arr = dataArr[index]
+                var data = arr.data
+
+                console.log(arr)
+
+                data.forEach(item => {
+                    dataStr += '<div class="content">' +
+                        '<div class="content_div">' +
+                        '<img src=' + item.img + '>' +
+                        '</div>' +
+                        '<div class="content_right">' +
+                        '<span>' + item.span1 + '</span>' +
+                        '<span>' + item.span2 + '</span>' +
+                        '</div>' +
+                        '</div>'
+                })
+
+                document.getElementsByClassName('bottom')[index].innerHTML = dataStr
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>

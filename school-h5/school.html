@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- 越党校首页 -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/study.css">
+    <link rel="stylesheet" href="./css/school.css">
+    <script src="./index.js"></script>
+</head>
+
+<body>
+    <div id="slider">
+    </div>
+
+    <div class="header">
+
+    </div>
+
+    <div class="news">
+        <div class="news_head">
+            <span>校园新闻</span>
+            <a href="./school_new.html"><span>更多>></span></a>
+        </div>
+        <ul class="news_nav">
+            <li>
+                <span>春暖溢书香，巾帼筑芳华——区委党校xxxxxxx</span>
+                <span>2022-03-09</span>
+            </li>
+            <li>
+                <span>习近平再中央党校（国家行政学院）中表示xxxxxxxxxxx</span>
+                <span>2022-03-07</span>
+            </li>
+            <li>
+                <span>区委党校召开理论学习中心组扩大会xxxxxxxx</span>
+                <span>2022-02-26</span>
+            </li>
+            <li>
+                <span>市区党校联姻，新老教师结对——越城区xxxxxxxxxx</span>
+                <span>2022-02-21</span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="discuss">
+        <div class="discuss_head">
+            <span>交流论坛</span>
+            <a href="./school_bbs.html"><span>更多>></span></a>
+        </div>
+        <ul class="discuss_nav">
+            <li>
+                <p class="li_p">求，如何报考党校在职研究生？</p>
+                <div class="discuss_content">
+                    <p>
+                        <span>3</span><img src="./pic/like.png">
+                    </p>
+                    <p>
+                        <span>3</span><img src="./pic/msg.png">
+                    </p>
+                </div>
+            </li>
+            <li>
+                <p class="li_p">因工作需要，中共绍兴市越城区委党校面向xxxxxxxxxxxxx</p>
+                <div class="discuss_content">
+                    <p>
+                        <span>5</span><img src="./pic/like.png">
+                    </p>
+                    <p>
+                        <span>3</span><img src="./pic/msg.png">
+                    </p>
+                </div>
+            </li>
+            <li>
+                <p class="li_p">区委党校召开理论学习中心组扩大会xxxxxxxxxxxxxxxxxxx</p>
+                <div class="discuss_content">
+                    <p>
+                        <span>5</span><img src="./pic/like.png">
+                    </p>
+                    <p>
+                        <span>8</span><img src="./pic/msg.png">
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+
+    <script>
+        var pic = [
+            {
+                swiper: "./swiper/1.jpg",
+                tab: "./pic/school/1.png",
+                caption: "校园新闻",
+                url: './school_new.html'
+            },
+            {
+                swiper: "./swiper/2.jpg",
+                tab: "./pic/school/2.png",
+                caption: "党校简介",
+                url: './school_intro.html'
+            },
+            {
+                swiper: "./swiper/3.jpg",
+                tab: "./pic/school/3.png",
+                caption: "交流论坛",
+                url: './school_bbs.html'
+            },
+            {
+                swiper: "./swiper/4.jpg",
+                tab: "./pic/school/4.png",
+                caption: "心得/作业提交",
+                url: './school_refer.html'
+            }
+        ]
+
+        var slider = document.getElementById('slider')
+        function render() {
+            var arr = `<ul class="slider-list">
+            ${pic.map(item =>
+                `<li>
+                <img src="${item.swiper}">
+            </li>`
+            ).join('')}
+            <li><img src="./swiper/1.jpg"></li>
+            </ul >
+            <div class="dot-list">
+                ${pic.map((item, index) =>
+                `<span onclick="circlick(${index})" class="dot"></span>`
+            ).join('')}
+            </div>
+            `
+            slider.innerHTML = arr
+        }
+        render()
+
+
+        var header = document.getElementsByClassName('header')
+        function renderHead() {
+            var arr = `<ul class="header_tab">
+            ${pic.map(item =>
+                `<li>
+                <a href="${item.url}"><img src="${item.tab}"></a>
+                <span>${item.caption}</span>
+            </li>
+            `
+            ).join('')}
+            </ul>
+            `
+            header[0].innerHTML = arr
+        }
+        renderHead()
+
+
+
+        var slid = document.getElementById('slider');
+        var slidLis = slid.getElementsByTagName('ul')[0];
+        var slidLi = slidLis.getElementsByTagName('li');
+
+        var index = 0;
+        function lun() {
+            index++;
+            circe();
+            slidLis.style.left = index * -100 + "%";
+            slidLis.style.transition = "all 1s";
+            if (index === slidLi.length - 1) {
+                index = 0;
+                setTimeout(function () {
+                    slidLis.style.left = 0;
+                    slidLis.style.transition = "none";
+                }, 1000)
+            }
+            circe();
+        }
+
+        //  自动轮播
+        var autoplay = setInterval(lun, 3000);
+        slid.addEventListener("mouseenter", function () {
+            clearInterval(autoplay);
+        });
+        slid.addEventListener("mouseleave", function () {
+            clearInterval;
+            autoplay = setInterval(lun, 3000);
+        })
+
+        //圆点
+        var dotList = document.getElementsByTagName('span');
+        function circe() {
+            for (var i = 0; i < dotList.length; i++) {
+                if (i === index) {
+                    dotList[i].classList.add("cur");
+                } else {
+                    dotList[i].classList.remove("cur");
+                }
+            }
+        }
+        dotList[0].classList.add("cur");
+
+
+        //圆点点击事件：
+        function circlick(data) {
+            let cir = document.getElementsByClassName('dot');
+            console.log(data);
+            slidLis.style.left = data * -100 + "%";
+            for (let i = 0; i < cir.length; i++) {
+                dotList[i].classList.remove("cur");
+            }
+            dotList[data].classList.add("cur");
+            index = data;
+
+
+            clerSettimeout();
+
+            function clerSettimeout() {
+                let id = setInterval(() => { }, 0);
+                while (id > 0) {
+                    window.clearInterval(id)
+                    id--;
+                    console.log(1);
+                }
+            }
+
+            setTimeout(() => {
+                let autoplay = setInterval(lun, 3000);
+            }, 1500);
+        }
+
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- 阅展厅首页 -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/study.css">
+    <link rel="stylesheet" href="./css/show.css">
+    <script src="./index.js"></script>
+</head>
+
+<body>
+    <div id="slider"></div>
+
+    <div class="header">
+
+    </div>
+
+    <div class="cloundshow">
+        <div class="cloundshow_header">
+            <span>云上看展</span>
+            <a href="./show_list.html"><span>更多>></span></a>
+        </div>
+        <div class="cloundshow_nav">
+            <ul class="list-ul">
+            </ul>
+        </div>
+    </div>
+
+
+    <script>
+        var pic = [
+            {
+                swiper: "./swiper/1.jpg",
+            },
+            {
+                swiper: "./swiper/2.jpg",
+            },
+            {
+                swiper: "./swiper/3.jpg",
+            },
+            {
+                swiper: "./swiper/4.jpg",
+            }
+        ]
+
+        var tab = [
+            {
+                tab: "./pic/show/watch.png",
+                caption: "云上看展",
+                url: './show_list.html'
+            },
+            {
+                tab: "./pic/show/booking.png",
+                caption: "预约展厅",
+                url: './show_booking.html'
+            }
+
+        ]
+
+
+        var StandArr = [
+            {
+                pic: "./pic/show-list/1.png",
+                content: "越城区党员干部党性教育网上展厅"
+            },
+            {
+                pic: "./pic/show-list/2.png",
+                content: '"学习习近平总书记考察浙江重要讲话精神"主题展'
+            },
+            {
+                pic: "./pic/show-list/3.png",
+                content: "越城区党员干部党性教育网上展厅"
+            },
+            {
+                pic: "./pic/show-list/4.png",
+                content: '"学习习近平总书记考察浙江重要讲话精神"主题展'
+            },
+        ]
+
+        var StandStr = "";
+
+        StandArr.forEach(item => {
+            StandStr += '<li>' +
+                '<img src="' + item.pic + '" alt="">' +
+                '<p class="list-title">' + item.content +
+                '</p>' +
+                '</li>'
+        });
+
+        document.getElementsByClassName("list-ul")[0].innerHTML = StandStr;
+
+
+        var slider = document.getElementById('slider')
+        function render() {
+            var arr = `<ul class="slider-list">
+            ${pic.map(item =>
+                `<li>
+                <img src="${item.swiper}">
+            </li>`
+            ).join('')}
+            <li><img src="./swiper/1.jpg"></li>
+            </ul >
+            <div class="dot-list">
+               ${pic.map((item, index) =>
+                `<span onclick="circlick(${index})" class="dot"></span>`
+            ).join('')}
+            </div>
+            `
+            slider.innerHTML = arr
+        }
+        render()
+
+
+        var header = document.getElementsByClassName('header')
+        function renderHead() {
+            var arr = `<ul class="header_tab">
+            ${tab.map(item =>
+                `<li>
+                <a href="${item.url}"><img src="${item.tab}"></a>
+                <span>${item.caption}</span>
+            </li>
+            `
+            ).join('')}
+            </ul>
+            `
+            header[0].innerHTML = arr
+        }
+        renderHead()
+
+
+
+        var slid = document.getElementById('slider');
+        var slidLis = slid.getElementsByTagName('ul')[0];
+        var slidLi = slidLis.getElementsByTagName('li');
+
+        var index = 0;
+        function lun() {
+            index++;
+            circe();
+            slidLis.style.left = index * -100 + "%";
+            slidLis.style.transition = "all 1s";
+            if (index === slidLi.length - 1) {
+                index = 0;
+                setTimeout(function () {
+                    slidLis.style.left = 0;
+                    slidLis.style.transition = "none";
+                }, 1000)
+            }
+            circe();
+        }
+
+        //  自动轮播
+        var autoplay = setInterval(lun, 3000);
+        slid.addEventListener("mouseenter", function () {
+            clearInterval(autoplay);
+        });
+        slid.addEventListener("mouseleave", function () {
+            clearInterval;
+            autoplay = setInterval(lun, 3000);
+        })
+
+        //圆点
+        var dotList = document.getElementsByTagName('span');
+        function circe() {
+            for (var i = 0; i < dotList.length; i++) {
+                if (i === index) {
+                    dotList[i].classList.add("cur");
+                } else {
+                    dotList[i].classList.remove("cur");
+                }
+            }
+        }
+        dotList[0].classList.add("cur");
+
+
+        //圆点点击事件：
+        function circlick(data) {
+            let cir = document.getElementsByClassName('dot');
+            console.log(data);
+            slidLis.style.left = data * -100 + "%";
+            for (let i = 0; i < cir.length; i++) {
+                dotList[i].classList.remove("cur");
+            }
+            dotList[data].classList.add("cur");
+            index = data;
+
+
+            clerSettimeout();
+
+            function clerSettimeout() {
+                let id = setInterval(() => { }, 0);
+                while (id > 0) {
+                    window.clearInterval(id)
+                    id--;
+                    console.log(1);
+                }
+            }
+
+            setTimeout(() => {
+                let autoplay = setInterval(lun, 3000);
+            }, 1500);
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.bbs {
+  width: 100%;
+}
+
+h4 {
+  width: 89%;
+  font-size: 0.7rem;
+  font-weight: 400;
+  text-align: center;
+  margin: 0.45rem auto 0.7rem;
+  padding-bottom: 0.2rem;
+  border-bottom: 1px solid #333;
+}
+
+.bbs_head {
+  width: 89%;
+
+  margin: 0 auto;
+}
+
+.bbs_head img {
+  width: 100%;
+}
+
+.bbs_head p {
+  font-size: 0.38rem;
+  text-indent: 9%;
+  text-align: justify;
+  letter-spacing: 0.02rem;
+  line-height: 0.7rem;
+}
+
+.bbs_nav {
+  width: 89%;
+  display: flex;
+  margin: 0.3rem auto 1rem;
+}
+
+.bbs_nav p {
+  padding-right: 0.32rem;
+  font-size: 0.38rem;
+  text-indent: 18%;
+  text-align: justify;
+  letter-spacing: 0.02rem;
+  line-height: 0.65rem;
+  margin-top: -8px;
+}
+
+.bbs_div img {
+  width: 4rem;
+  margin-bottom: 0.25rem;
+}

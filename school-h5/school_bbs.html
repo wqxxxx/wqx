@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- 越党校首页---交流论坛 -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="./css/school_bbs.css">
+    <title>Document</title>
+    <script src="./index.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <img src="./pic/school-bbs/header.png" />
+    </div>
+
+    <div class="div1">
+        <div class="title">
+            <p>
+                <label class="cir cirlabel"></label> 校园版块
+            </p>
+            <p>
+                <label class="cir"></label> 党政版块
+            </p>
+            <p>
+                <label class="cir"></label> 生活板块
+            </p>
+            <p>
+                <label class="cir"></label> 课程分享
+            </p>
+        </div>
+
+        <div class="outhref">
+            <a href="./school_bbs_refer.html" target="_blank">
+                <img src="./pic/school-bbs/+.png" />
+            </a>
+        </div>
+
+        <div class="tab_list">
+            <div class="bottom" style="display: block">
+                <div class="datadiv">
+                    <h6 class="hdata">什么是智慧党校？怎样建设智慧党校？</h6>
+                    <span
+                        class="spandata">大三学会了开始化妆打扮了，刚开始化妆的时候有点惨不忍睹，后面技术还是慢慢熟稔，直到现在精致的妆容，优雅的穿搭，加上良好的身材，活脱脱的变成了另外一个人。</span>
+                    <div class="imgdiv">
+                        <!-- 用来引出悬浮窗口的div -->
+                        <a href="javascript:void(0)" onclick="displayWindow()">
+                            <div class="modal_child"></div>
+                            <img src="./pic/school-bbs/msg.png" alt="">
+                            <span>3</span>
+                        </a>
+                        <a href="javascript:void(0)" onclick="displayWindow()">
+                            <img src="./pic/school-bbs/zan.png" alt="">
+                            <span>4</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom"></div>
+            <div class="bottom"></div>
+            <div class="bottom"></div>
+        </div>
+
+        <!--悬浮窗口-->
+        <div id="window" class="window_css">
+            <a href="javascript:void(0)" onclick="hideWindow()">×</a>
+            <div class="modal">
+                <p>评论 101</p>
+                <p>xxxxx</p>
+            </div>
+        </div>
+        <!--出现悬浮窗口后,背景变暗-->
+        <div id="shadow" class="shadow_css" onclick="hideWindow()"></div>
+
+    </div>
+
+
+
+    <script>
+
+        var title = document.querySelector('.title')
+        var list = title.querySelectorAll('p')
+
+        var cir = document.querySelectorAll('.cir')
+
+        var tab_list = document.querySelectorAll('.bottom')
+
+        var dataStr = ''
+        var dataArr = [
+            {
+                title: '第一页',
+                data: [
+                    {
+                        img1: './pic/school-bbs/msg.png',
+                        img2: './pic/school-bbs/zan.png',
+                        h6: '什么是智慧党校？怎样建设智慧党校？',
+                        span: '大三学会了开始化妆打扮了，刚开始化妆的时候有点惨不忍睹，后面技术还是慢慢熟稔，直到现在精致的妆容，优雅的穿搭，加上良好的身材，活脱脱的变成了另外一个人。',
+                    },
+                    {
+                        img1: './pic/school-bbs/msg.png',
+                        img2: './pic/school-bbs/zan.png',
+                        h6: '什么是智慧党校？怎样建设智慧党校？',
+                        span: '大三学会了开始化妆打扮了，刚开始化妆的时候有点惨不忍睹，后面技术还是慢慢熟稔，直到现在精致的妆容，优雅的穿搭，加上良好的身材，活脱脱的变成了另外一个人。',
+                    },
+                    {
+                        img1: './pic/school-bbs/msg.png',
+                        img2: './pic/school-bbs/zan.png',
+                        h6: '什么是智慧党校？怎样建设智慧党校？',
+                        span: '大三学会了开始化妆打扮了，刚开始化妆的时候有点惨不忍睹，后面技术还是慢慢熟稔，直到现在精致的妆容，优雅的穿搭，加上良好的身材，活脱脱的变成了另外一个人。',
+                    },
+                ]
+            },
+            {
+                title: '第二页',
+                data: [
+                    {
+                        img1: './pic/school-bbs/msg.png',
+                        img2: './pic/school-bbs/zan.png',
+                        h6: '什么是智慧党校？怎样建设智慧党校？',
+                        span: '大三学会了开始化妆打扮了，刚开始化妆的时候有点惨不忍睹，后面技术还是慢慢熟稔，直到现在精致的妆容，优雅的穿搭，加上良好的身材，活脱脱的变成了另外一个人。',
+                    },
+                    {
+                        img1: './pic/school-bbs/msg.png',
+                        img2: './pic/school-bbs/zan.png',
+                        h6: '什么是智慧党校？怎样建设智慧党校？',
+                        span: '大三学会了开始化妆打扮了，刚开始化妆的时候有点惨不忍睹，后面技术还是慢慢熟稔，直到现在精致的妆容，优雅的穿搭，加上良好的身材，活脱脱的变成了另外一个人。',
+                    },
+                    {
+                        img1: './pic/school-bbs/msg.png',
+                        img2: './pic/school-bbs/zan.png',
+                        h6: '什么是智慧党校？怎样建设智慧党校？',
+                        span: '大三学会了开始化妆打扮了，刚开始化妆的时候有点惨不忍睹，后面技术还是慢慢熟稔，直到现在精致的妆容，优雅的穿搭，加上良好的身材，活脱脱的变成了另外一个人。',
+                    },
+                ]
+            },
+            {
+                title: '第三页',
+                data: [
+                    {
+                        img1: './pic/school-bbs/msg.png',
+                        img2: './pic/school-bbs/zan.png',
+                        h6: '什么是智慧党校？怎样建设智慧党校？',
+                        span: '大三学会了开始化妆打扮了，刚开始化妆的时候有点惨不忍睹，后面技术还是慢慢熟稔，直到现在精致的妆容，优雅的穿搭，加上良好的身材，活脱脱的变成了另外一个人。',
+                    },
+                    {
+                        img1: './pic/school-bbs/msg.png',
+                        img2: './pic/school-bbs/zan.png',
+                        h6: '什么是智慧党校？怎样建设智慧党校？',
+                        span: '大三学会了开始化妆打扮了，刚开始化妆的时候有点惨不忍睹，后面技术还是慢慢熟稔，直到现在精致的妆容，优雅的穿搭，加上良好的身材，活脱脱的变成了另外一个人。',
+                    },
+                    {
+                        img1: './pic/school-bbs/msg.png',
+                        img2: './pic/school-bbs/zan.png',
+                        h6: '什么是智慧党校？怎样建设智慧党校？',
+                        span: '大三学会了开始化妆打扮了，刚开始化妆的时候有点惨不忍睹，后面技术还是慢慢熟稔，直到现在精致的妆容，优雅的穿搭，加上良好的身材，活脱脱的变成了另外一个人。',
+                    },
+                ]
+            },
+            {
+                title: '第四页',
+                data: [
+                    {
+                        img1: './pic/school-bbs/msg.png',
+                        img2: './pic/school-bbs/zan.png',
+                        h6: '什么是智慧党校？怎样建设智慧党校？',
+                        span: '大三学会了开始化妆打扮了，刚开始化妆的时候有点惨不忍睹，后面技术还是慢慢熟稔，直到现在精致的妆容，优雅的穿搭，加上良好的身材，活脱脱的变成了另外一个人。',
+                    },
+                    {
+                        img1: './pic/school-bbs/msg.png',
+                        img2: './pic/school-bbs/zan.png',
+                        h6: '什么是智慧党校？怎样建设智慧党校？',
+                        span: '大三学会了开始化妆打扮了，刚开始化妆的时候有点惨不忍睹，后面技术还是慢慢熟稔，直到现在精致的妆容，优雅的穿搭，加上良好的身材，活脱脱的变成了另外一个人。',
+                    },
+                    {
+                        img1: './pic/school-bbs/msg.png',
+                        img2: './pic/school-bbs/zan.png',
+                        h6: '什么是智慧党校？怎样建设智慧党校？',
+                        span: '大三学会了开始化妆打扮了，刚开始化妆的时候有点惨不忍睹，后面技术还是慢慢熟稔，直到现在精致的妆容，优雅的穿搭，加上良好的身材，活脱脱的变成了另外一个人。',
+                    },
+                ]
+            }
+        ]
+
+
+        // 导航条切换：
+        for (var i = 0; i < list.length; i++) {
+            list[i].setAttribute('index', i)
+
+            list[i].onclick = function () {
+                var index = this.getAttribute('index')
+
+                // 导航条圆点切换:
+                for (var i = 0; i < cir.length; i++) {
+                    cir[i].classList.remove("cirlabel")
+                }
+                cir[index].setAttribute('class', 'cirlabel')
+
+                // 内容切换:
+                for (var i = 0; i < tab_list.length; i++) {
+                    tab_list[i].style.display = "none"
+                    document.getElementsByClassName('bottom')[i].innerHTML = ''
+                }
+                tab_list[index].style.display = 'block'
+
+                var dataStr = ''
+                var arr = dataArr[index]
+                var data = arr.data
+
+                console.log(arr)
+
+                data.forEach(item => {
+                    dataStr += '<div class="datadiv">' +
+                        '<h6 class="hdata">' + item.h6 + '</h6>' +
+                        '<span class="spandata">' + item.span + '</span>' +
+                        '<div class="imgdiv">' +
+                        '<a href="javascript:void(0)" onclick="displayWindow()">' +
+                        '<img src=' + item.img1 + '>' +
+                        '<span>' + 3 +
+                        '</span>' +
+                        '</a>' +
+                        '<a href="javascript:void(0)" onclick="displayWindow()">' +
+                        '<img src=' + item.img2 + '>' +
+                        '<span>' + 4 +
+                        '</span>' +
+                        '</a>' +
+                        '</div>' +
+                        '</div>'
+                })
+                document.getElementsByClassName('bottom')[index].innerHTML = dataStr
+            }
+        }
+
+
+        /*当点击调用此方法后,将悬浮窗口显示出来,背景变暗*/
+        function displayWindow() {
+            /*悬浮窗口的显示,需要将display变成block*/
+            document.getElementById("window").style.display = "block";
+            /*将背景变暗*/
+            document.getElementById("shadow").style.display = "block";
+        }
+
+        /*当点击调用此方法,将悬浮窗口和背景全部隐藏*/
+        function hideWindow() {
+            document.getElementById("window").style.display = "none";
+            document.getElementById("shadow").style.display = "none";
+        }
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>

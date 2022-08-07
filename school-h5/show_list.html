@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- 阅展厅---云上看展 -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./css/show_list.css">
+    <title>Document</title>
+    <script src="./index.js"></script>
+</head>
+
+<body>
+    <div id="show">
+        <p class="cloud">云上看展</p>
+        <div class="list">
+            <ul class="list-ul">
+            </ul>
+        </div>
+        <p class="back">由浙江锦蓝钻提供技术支持</p>
+    </div>
+
+    <script>
+        var StandArr = [
+            {
+                pic: "./pic/show-list/1.png",
+                content: "越城区党员干部党性教育网上展厅"
+            },
+            {
+                pic: "./pic/show-list/2.png",
+                content: '"学习习近平总书记考察浙江重要讲话精神"主题展'
+            },
+            {
+                pic: "./pic/show-list/3.png",
+                content: "越城区党员干部党性教育网上展厅"
+            },
+            {
+                pic: "./pic/show-list/4.png",
+                content: '"学习习近平总书记考察浙江重要讲话精神"主题展'
+            },
+            {
+                pic: "./pic/show-list/5.png",
+                content: "越城区党员干部党性教育网上展厅"
+            },
+            {
+                pic: "./pic/show-list/6.png",
+                content: '"学习习近平总书记考察浙江重要讲话精神"主题展'
+            },
+            {
+                pic: "./pic/show-list/7.png",
+                content: "越城区党员干部党性教育网上展厅"
+            },
+            {
+                pic: "./pic/show-list/8.png",
+                content: '"学习习近平总书记考察浙江重要讲话精神"主题展'
+            }
+        ]
+
+        var StandStr = "";
+
+        StandArr.forEach(item => {
+            StandStr += '<li>' +
+                '<img src="' + item.pic + '" alt="">' +
+                '<p class="list-title">' + item.content +
+                '</p>' +
+                '</li>'
+        });
+
+        document.getElementsByClassName("list-ul")[0].innerHTML = StandStr;
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+#slider {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.slider-list {
+  display: flex;
+  position: relative;
+  left: 0px;
+  width: 500%;
+  height: 6.25rem;
+  transition: all 1s;
+}
+
+.slider-list li {
+  width: 20%;
+  height: 100%;
+}
+
+/* 图片部分 */
+.slider-list li img {
+  width: 100%;
+  height: 6.25rem;
+}
+
+/* 圆点部分 */
+.dot-list {
+  position: absolute;
+  bottom: 0.28rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.03rem 0.625rem;
+}
+
+.dot-list .dot {
+  display: inline-block;
+  width: 0.25rem;
+  height: 0.25rem;
+  border-radius: 50%;
+  margin: 0.1rem;
+  background-color: white;
+}
+
+.dot-list .dot.cur {
+  background-color: orange;
+}
+
+.nav-list {
+  display: flex;
+  margin: 0.5rem;
+  padding: 0 0.1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.nav-list img {
+  width: 4.7rem;
+  height: 2.3rem;
+  margin: 0 auto;
+}
+
+.right-div {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0.7rem 0 0.3rem;
+  position: relative;
+}
+
+.right-div h6 {
+  font-size: 0.38rem;
+  margin-bottom: 0.1rem;
+  letter-spacing: 0.02rem;
+}
+
+.right-div :nth-child(2) {
+  font-size: 0.28rem;
+  letter-spacing: 0.03rem;
+}
+
+.right-div span:nth-child(3) {
+  position: absolute;
+  font-size: 0.2rem;
+  bottom: 0;
+  right: 0;
+}
+
+.right-div :nth-child(3) img {
+  width: 0.3rem;
+  height: 0.3rem;
+  vertical-align: middle;
+}

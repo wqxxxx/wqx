@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- 越党校首页---心得/作业提交 -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/school_refer.css">
+    <title>Document</title>
+    <script src="./index.js"></script>
+</head>
+
+<body>
+    <form id="form" name="myForm" method="post" action="" target="_blank">
+        <div class="choose">
+            <p>课程选择</p>
+            <select name="classes">
+                <option>请选择..</option>
+                <option>课程1</option>
+                <option>课程2</option>
+                <option>课程3</option>
+            </select>
+        </div>
+        <div class="choose">
+            <p>学员选择</p>
+            <select name="people">
+                <option>请选择..</option>
+                <option>学员1</option>
+                <option>学员2</option>
+                <option>学员3</option>
+            </select>
+        </div>
+        <div class="choose">
+            <p>作业期数</p>
+            <select name="task">
+                <option>请选择..</option>
+                <option>第一期</option>
+                <option>第二期</option>
+                <option>第三期</option>
+            </select>
+        </div>
+
+        <div class="chooseall">
+            <p>作业上传</p>
+            <div class="upload-content">
+                <div class="file">
+                    <input type="file" name="file" accept="*/*" id="upload" multiple onchange="handleFiles(this)">
+                    <span id="icon">+</span>
+                </div>
+                <label id="filelabel"></label>
+            </div>
+        </div>
+
+        <div class="chooseall">
+            <p>作业描述</p>
+            <textarea placeholder="作业描述"></textarea>
+        </div>
+
+        <div style="text-align: center">
+            <input type="submit" class="sub" value="作业提交">
+        </div>
+    </form>
+
+    <script>
+        function handleFiles(item) {
+            var fileinput = document.getElementById('upload')
+            var file = fileinput.value
+
+            var filea = file.split("\\")
+            var fileb = filea[filea.length - 1]
+            // console.log(fileb)
+
+            var filelabel = document.getElementById('filelabel')
+            filelabel.innerHTML = fileb
+
+            var fileList = item.files[0]
+            // console.log(fileList)
+
+            var icon = document.getElementById('icon')
+
+            icon.style.display = 'none';
+            var pic = document.getElementsByClassName('file')[0]
+            pic.style.background = "url('./pic/bag.jpg') no-repeat center/80%"
+        }
+
+    </script>
+</body>
+
+</html>

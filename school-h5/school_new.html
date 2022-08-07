@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- 越党校首页---校园新闻 -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/school_new.css">
+    <title>Document</title>
+    <script src="./index.js"></script>
+</head>
+
+<body>
+
+    <div id="slider"></div>
+
+    <div id="nav"></div>
+
+    <script>
+        var pic = [
+            {
+                swiper: "./swiper/1.jpg",
+                left: './pic/school-new/1.png',
+                top: '区党委校多措并举备战',
+                content: '今年以来，区委党校充分利用春季学期前的空档期...',
+                logo: './pic/school-new/time.png',
+                time: '2022-03-09',
+            },
+            {
+                swiper: "./swiper/2.jpg",
+                left: './pic/school-new/1.png',
+                top: '区党委校多措并举备战',
+                content: '今年以来，区委党校充分利用春季学期前的空档期...',
+                logo: './pic/school-new/time.png',
+                time: '2022-03-09',
+            },
+            {
+                swiper: "./swiper/3.jpg",
+                left: './pic/school-new/1.png',
+                top: '区党委校多措并举备战',
+                content: '今年以来，区委党校充分利用春季学期前的空档期...',
+                logo: './pic/school-new/time.png',
+                time: '2022-03-09'
+            },
+            {
+                swiper: "./swiper/4.jpg",
+                left: './pic/school-new/1.png',
+                top: '区党委校多措并举备战',
+                content: '今年以来，区委党校充分利用春季学期前的空档期...',
+                logo: './pic/school-new/time.png',
+                time: '2022-03-09'
+            }
+        ]
+
+        // var data = []
+
+        var slider = document.getElementById('slider')
+        function render() {
+            var arr = `<ul class="slider-list">
+            ${pic.map(item =>
+                `<li>
+                <img src="${item.swiper}">
+            </li>`
+            ).join('')}
+            <li><img src="./swiper/1.jpg"></li>
+            </ul >
+            <div class="dot-list">
+            ${pic.map((item, index) =>
+                `<span onclick="circlick(${index})" class="dot"></span>`
+            ).join('')}
+            </div>
+            `
+            slider.innerHTML = arr
+        }
+        render()
+
+        var nav = document.getElementById('nav')
+        function rendernav() {
+            var arr = `
+                ${pic.map(item =>
+                `<div class="nav-list">
+                    <img src="${item.left}">
+                    <div class="right-div">
+                        <h6>${item.top}</h6>
+                        <span>${item.content}</span>
+                        <span><img src=${item.logo} /> ${item.time}</span>
+                    </div>
+                </div>`
+            ).join('')
+                }
+            `
+            nav.innerHTML = arr
+        }
+        rendernav()
+
+
+
+        var slid = document.getElementById('slider');
+        var slidLis = slid.getElementsByTagName('ul')[0];
+        var slidLi = slidLis.getElementsByTagName('li');
+
+        var index = 0;
+        function lun() {
+            index++;
+            circe();
+            slidLis.style.left = index * -100 + "%";
+            slidLis.style.transition = "all 1s";
+            if (index === slidLi.length - 1) {
+                index = 0;
+                setTimeout(function () {
+                    slidLis.style.left = 0;
+                    slidLis.style.transition = "none";
+                }, 1000)
+            }
+            circe();
+        }
+
+        //  自动轮播
+        var autoplay = setInterval(lun, 3000);
+        slid.addEventListener("mouseenter", function () {
+            clearInterval(autoplay);
+        });
+        slid.addEventListener("mouseleave", function () {
+            clearInterval;
+            autoplay = setInterval(lun, 3000);
+        })
+
+        //圆点
+        var dotList = document.getElementsByTagName('span');
+        function circe() {
+            for (var i = 0; i < dotList.length; i++) {
+                if (i === index) {
+                    dotList[i].classList.add("cur");
+                } else {
+                    dotList[i].classList.remove("cur");
+                }
+            }
+        }
+        dotList[0].classList.add("cur");
+
+
+        //圆点点击事件：
+        function circlick(data) {
+            let cir = document.getElementsByClassName('dot');
+            console.log(data);
+            slidLis.style.left = data * -100 + "%";
+            for (let i = 0; i < cir.length; i++) {
+                dotList[i].classList.remove("cur");
+            }
+            dotList[data].classList.add("cur");
+            index = data;
+
+
+            clerSettimeout();
+
+            function clerSettimeout() {
+                let id = setInterval(() => { }, 0);
+                while (id > 0) {
+                    window.clearInterval(id)
+                    id--;
+                    // console.log(1);
+                }
+            }
+
+            setTimeout(() => {
+                let autoplay = setInterval(lun, 3000);
+            }, 1500);
+        }
+
+        // window.onload = function () {
+        //     fetch('http://192.168.31.120:8083/yuecheng/home/listOne?address=1')
+        //         .then(res => res.json())
+        //         .then(res => {
+        //             // console.log(res.data.homeImage);
+        //             this.data = res.data.homeImage
+        //         })
+        // }
+
+    </script>
+</body>
+
+</html>
