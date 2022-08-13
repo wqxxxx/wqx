@@ -1,0 +1,12 @@
+/* 图标加载 */
+/* #ifndef APP-NVUE */
+	/* #ifndef MP-BAIDU */
+	@font-face{
+		font-family : "gui-iconfont";
+		font-weight : normal;
+		font-style  : normal; 
+		src         : url('@/static/grace.ttf') format('truetype');
+	}
+	/* #endif */
+.gui-icons{font-family:"gui-iconfont"; font-style:normal;}
+/* #endif */

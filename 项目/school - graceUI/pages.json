@@ -1,0 +1,92 @@
+{
+	"pages": [{
+			"path": "pages/switchPages/school",
+			"style": {
+				"navigationBarTitleText": "越党校首页",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/switchPages/school-new",
+			"style": {
+				"navigationBarTitleText": "越党校新闻",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/switchPages/school-introduction",
+			"style": {
+				"navigationBarTitleText": "越党校简介",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/switchPages/school-forum",
+			"style": {
+				"navigationBarTitleText": "越党校交流论坛",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/switchPages/school-forum-refer",
+			"style": {
+				"navigationBarTitleText": "越党校交流论坛发布",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/switchPages/school-refer",
+			"style": {
+				"navigationBarTitleText": "越党校心得",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/switchPages/study",
+			"style": {
+				"navigationBarTitleText": "悦学习首页",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/switchPages/study-list",
+			"style": {
+				"navigationBarTitleText": "悦学习习语",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/switchPages/show",
+			"style": {
+				"navigationBarTitleText": "阅展厅首页",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/switchPages/show-booking",
+			"style": {
+				"navigationBarTitleText": "阅展厅预约",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/switchPages/show-hall",
+			"style": {
+				"navigationBarTitleText": "阅展厅看展",
+				"navigationStyle": "custom"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "GraceUI",
+		"navigationBarBackgroundColor": "#FFFFFF",
+		"backgroundColor": "#FFFFFF"
+	},
+	"easycom": {
+		"autoscan": true,
+		"custom": {
+			"gui-(.*)": "@/Grace6/components/gui-$1.vue"
+		}
+	}
+}
