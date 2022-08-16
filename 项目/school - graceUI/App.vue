@@ -14,6 +14,7 @@ export default {
 	onHide: function() {},
 	globalData: {
 		baseUrl: 'https://m.xphadmin.com/yuecheng-api'
+		// baseUrl: 'http://192.168.31.120:8083'
 	}
 };
 </script>

@@ -47,10 +47,10 @@
 						</view>
 						<!-- 增加评论 -->
 						<view style="margin:0 50rpx;" v-show="item.showComment">
-							<form @submit="submit">
+							<form @submit="submit(e, index)">
 								<view class="gui-flex gui-row gui-align-items-center ">
 									<image src="../../static/msg.png" class="p3"></image>
-									<input type="text" placeholder="请评论" maxlength="200" class="text3" v-model="form.comment" />
+									<input type="text" placeholder="请评论" maxlength="200" class="text3" v-model="item.comment" />
 									<button class="btn" formType="submit">确定</button>
 								</view>
 							</form>
@@ -100,7 +100,7 @@ export default {
 			form: {
 				comment: '',
 				interflowId: '',
-				openid: 'oEkIz1ShAllHIFtDyEC1zC9_7dWA'
+				openid: ''
 			}
 		};
 	},
@@ -109,7 +109,7 @@ export default {
 		// localStorage.setItem(
 		// 	'wxInfoSchool1',
 		// 	JSON.stringify({
-		// 		id: 2,
+		// 		id: 4,
 		// 		openid: 'oazaR6vLF84J5GkhTIh53nlj_tBc',
 		// 		nickname: 'wqx',
 		// 		avatar: 'https://thirdwx.qlogo.cn/mmopen/vi_32/8EoZ4O9n12kLRDXKHVltSFtDYFL6pTPMewzuYCD2VialxkQhSVuuB7abpezdAA2y1YFFoBdwZLfURrb0eQJsvwA/132'
@@ -133,6 +133,8 @@ export default {
 			this.onShow();
 			this.getForum(JSON.parse(localStorage.getItem('wxInfoSchool1')).id, 0);
 		}
+
+		this.form.openid = JSON.parse(localStorage.getItem('wxInfoSchool1')).openid;
 	},
 
 	methods: {
@@ -194,12 +196,13 @@ export default {
 			});
 		},
 		//提交
-		submit: function(e) {
+		submit: function(e, index) {
+			console.log(index);
 			uni.request({
 				url: `${getApp().globalData.baseUrl}/yuecheng/comment/addComment`,
 				method: 'POST',
 				data: {
-					commentContent: this.form.comment,
+					commentContent: this.data[index].comment,
 					interflowId: this.form.interflowId,
 					openid: this.form.openid
 				},
@@ -238,6 +241,7 @@ export default {
 						if (this.data[i].interflowImage) {
 							this.data[i].interflowImage = this.data[i].interflowImage.split(',');
 							this.data[i].showComment = false;
+							this.data[i].comment = '';
 						}
 					}
 				},
@@ -349,9 +353,9 @@ export default {
 	font-size: 20rpx;
 }
 .btn {
-	padding: 0 20rpx;
+	padding: 0 18ssrpx;
 	height: 40rpx;
-	font-size: 10rpx;
+	font-size: 18rpx;
 	line-height: 40rpx;
 }
 </style>

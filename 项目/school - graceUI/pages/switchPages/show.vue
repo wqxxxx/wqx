@@ -66,7 +66,7 @@ export default {
 		},
 		getInfo: function() {
 			uni.request({
-				url: `${getApp().globalData.baseUrl}/yuecheng/home/listOne?address=0`,
+				url: `${getApp().globalData.baseUrl}/yuecheng/home/listOne?address=3`,
 				method: 'GET',
 				success: res => {
 					let data = res.data.data.homeImage;
