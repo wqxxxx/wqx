@@ -19,9 +19,10 @@
     <div id="nav"></div>
 
     <script>
+        var toto = []
+
         var pic = [
             {
-                swiper: "./swiper/1.jpg",
                 left: './pic/school-new/1.png',
                 top: '区党委校多措并举备战',
                 content: '今年以来，区委党校充分利用春季学期前的空档期...',
@@ -29,7 +30,6 @@
                 time: '2022-03-09',
             },
             {
-                swiper: "./swiper/2.jpg",
                 left: './pic/school-new/1.png',
                 top: '区党委校多措并举备战',
                 content: '今年以来，区委党校充分利用春季学期前的空档期...',
@@ -37,7 +37,6 @@
                 time: '2022-03-09',
             },
             {
-                swiper: "./swiper/3.jpg",
                 left: './pic/school-new/1.png',
                 top: '区党委校多措并举备战',
                 content: '今年以来，区委党校充分利用春季学期前的空档期...',
@@ -45,7 +44,6 @@
                 time: '2022-03-09'
             },
             {
-                swiper: "./swiper/4.jpg",
                 left: './pic/school-new/1.png',
                 top: '区党委校多措并举备战',
                 content: '今年以来，区委党校充分利用春季学期前的空档期...',
@@ -54,20 +52,19 @@
             }
         ]
 
-        // var data = []
 
         var slider = document.getElementById('slider')
         function render() {
             var arr = `<ul class="slider-list">
-            ${pic.map(item =>
+            ${toto.map(item =>
                 `<li>
-                <img src="${item.swiper}">
+                <img src="${'http://192.168.31.120:8083' + item}">
             </li>`
             ).join('')}
-            <li><img src="./swiper/1.jpg"></li>
+            <li><img src="http://192.168.31.120:8083/profile/upload/2022/08/04/e111c56c9396465d884a4f0dda7f9e2f.jpeg"></li>
             </ul >
             <div class="dot-list">
-            ${pic.map((item, index) =>
+            ${toto.map((item, index) =>
                 `<span onclick="circlick(${index})" class="dot"></span>`
             ).join('')}
             </div>
@@ -75,6 +72,7 @@
             slider.innerHTML = arr
         }
         render()
+
 
         var nav = document.getElementById('nav')
         function rendernav() {
@@ -102,6 +100,7 @@
         var slidLi = slidLis.getElementsByTagName('li');
 
         var index = 0;
+
         function lun() {
             index++;
             circe();
@@ -127,7 +126,10 @@
             autoplay = setInterval(lun, 3000);
         })
 
+
         //圆点
+        // var dot = document.getElementsByClassName('dot-list')[0]
+        // var dotList = document.getElementsByClassName('dot')
         var dotList = document.getElementsByTagName('span');
         function circe() {
             for (var i = 0; i < dotList.length; i++) {
@@ -169,14 +171,17 @@
             }, 1500);
         }
 
-        // window.onload = function () {
-        //     fetch('http://192.168.31.120:8083/yuecheng/home/listOne?address=1')
-        //         .then(res => res.json())
-        //         .then(res => {
-        //             // console.log(res.data.homeImage);
-        //             this.data = res.data.homeImage
-        //         })
-        // }
+        var getResponse = function () {
+            fetch('http://192.168.31.120:8083/yuecheng/home/listOne?address=1')
+                .then(res => res.json())
+                .then(res => {
+                    // console.log(res.data.homeImage);
+                    var image = toto = res.data.homeImage
+                    toto = image.split(',')
+
+                    render()
+                })
+        }()
 
     </script>
 </body>
