@@ -5,12 +5,14 @@
 			<!-- 分类导航 -->
 			<view class="gui-padding-x">
 				<!-- tab栏切换动态改变激活样式 -->
-				<view class="nav">
-					<view class="nav-list" v-for="(item, index) in list" :key="item.bookTypeId" @tap="changeAct(item)">
-						<!-- 激活样式名字是红色 判断act==index 和act==item.id都行-->
-						<view :class="[act == index ? 'name' : '']">{{ item.bookTypeName }}</view>
+				<scroll-view scroll-x :scroll-into-view="'yy_' + this.act">
+					<view class="nav" style="display:flex;flex-direction:row;">
+						<view class="nav-list" v-for="(item, index) in list" :key="item.bookTypeId" @tap="changeAct(item)" style="white-space: nowrap; padding: 10rpx;">
+							<!-- 激活样式名字是红色 判断act==index 和act==item.id都行-->
+							<view :class="[act == index ? 'name' : '']">{{ item.bookTypeName }}</view>
+						</view>
 					</view>
-				</view>
+				</scroll-view>
 				<!-- 内容的改变 -->
 				<view class="fater">
 					<view class="content bord gui-flex" v-for="(item, index) in data" :key="item.bookTypeId" style="margin-top: 40rpx;padding-bottom: 40rpx;">

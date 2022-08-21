@@ -120,7 +120,7 @@ export default {
 			var url = encodeURIComponent(window.location.href);
 			if (code == null || code === '') {
 				window.location.href =
-					'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxce27b563db618734&redirect_uri=' +
+					'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxc5151039e4610a28&redirect_uri=' +
 					url +
 					'&response_type=code&scope=snsapi_userinfo&state=state#wechat_redirect';
 			} else {
@@ -208,7 +208,8 @@ export default {
 				},
 				success: res => {
 					console.log(res);
-					this.form.comment = '';
+					// console.log(this.data[index].comment);
+					this.data[index].comment = '';
 				},
 				fail: err => {
 					console.log(err);
