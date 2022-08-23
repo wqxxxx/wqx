@@ -118,7 +118,7 @@ export default {
 	height: 119rpx;
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	/* justify-content: space-between; */
 	line-height: 119rpx;
 	font-size: 31rpx;
 	letter-spacing: 2rpx;
