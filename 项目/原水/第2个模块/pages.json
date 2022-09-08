@@ -1,0 +1,21 @@
+{
+	"pages": [{
+		"path": "pages/index",
+		"style": {
+			"navigationBarTitleText": "GraceUI",
+			"navigationStyle": "custom"
+		}
+	}],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "GraceUI",
+		"navigationBarBackgroundColor": "#FFFFFF",
+		"backgroundColor": "#FFFFFF"
+	},
+	"easycom": {
+		"autoscan": true,
+		"custom": {
+			"gui-(.*)": "@/Grace6/components/gui-$1.vue"
+		}
+	}
+}

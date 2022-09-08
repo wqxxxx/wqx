@@ -1,0 +1,28 @@
+{
+	"backstage": {
+		"o_id": "1",
+		"project_id": "5",
+		"project_name": "\u7b2c4\u5957\u6a21\u677f",
+		"texttype_id_name": "\u6d4b\u8bd5111",
+		"texttype_id": "4",
+		"bodyimagelist": [],
+		"bannerlist": [
+			"https:\/\/xiaopoha.oss-cn-hangzhou.aliyuncs.com\/qrcode\/2022-09-05\/023925817.jpeg?OSSAccessKeyId=LTAI5tSNynoDcRHt7ykWUmxR&Expires=2293177562&Signature=zrFuEJlp44jpRzFYJk3F76IOv2Q%3D"
+		],
+		"img_link": [
+			"www.baidu.com"
+		]
+	},
+	"reception": {
+		"o_id": "1",
+		"project_id": "5",
+		"project_name": "\u7b2c4\u5957\u6a21\u677f",
+		"texttype_id_name": "\u6d4b\u8bd5111",
+		"texttype_id": "8",
+		"bodyimagelist": [],
+		"bannerlist": [{
+			"banner_img": "https://tse2-mm.cn.bing.net/th/id/OIP-C.P3NSGTdAYdyqy5zJpb5QXQHaEo?w=259&h=180&c=7&r=0&o=5&pid=1.7",
+			"banner_link": ""
+		}]
+	}
+}

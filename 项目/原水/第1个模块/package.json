@@ -1,0 +1,9 @@
+{
+    "id": "bwm-pagination",
+    "name": "简单分页",
+    "version": "1.1.0",
+    "description": "简单的分页插件",
+    "keywords": [
+        "分页"
+    ]
+}
