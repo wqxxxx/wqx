@@ -49,7 +49,7 @@
 											</a>
 											<view class="bottom">
 												<image src="../static/time.png" class="timelogo"></image>
-												<text class="time">{{ item1.create_time }}</text>
+												<text class="time">{{ item1.release_time }}</text>
 											</view>
 										</view>
 										<text class="right">></text>
@@ -243,7 +243,7 @@ export default {
 		// 图片类型接口:
 		getImg(id, type) {
 			// fetch(`http://company.xphadmin.com:9091/api/imagevideo/getApiImage?o_id=${id}&img_type_id=${type}`)
-			fetch(`http://${window.location.host}/api/imagevideo/getApiImage?o_id=${id}&img_type_id=${type}`)
+			fetch(`https://${window.location.host}/api/imagevideo/getApiImage?o_id=${id}&img_type_id=${type}`)
 				.then(res => {
 					return res.json();
 				})
@@ -255,7 +255,7 @@ export default {
 
 		// 文章类型接口:
 		getWeb(id, type, pageNum, pageSize) {
-			fetch(`http://${window.location.host}/api/article/getApi?o_id=${id}&website_id=${type}&pageNum=${pageNum}&pageSize=${pageSize}`)
+			fetch(`https://${window.location.host}/api/article/getApi?o_id=${id}&website_id=${type}&pageNum=${pageNum}&pageSize=${pageSize}`)
 				// fetch(`http://company.xphadmin.com:9091/api/article/getApi?o_id=${id}&website_id=${type}&pageNum=${pageNum}&pageSize=${pageSize}`)
 				.then(res => {
 					return res.json();
@@ -265,12 +265,15 @@ export default {
 					this.page.total = res.total;
 					this.web = res.data.list;
 					this.web.forEach(item => (item.showComment = true));
+					this.web.forEach(item => {
+						item.release_time = item.release_time.substring(0, 10);
+					});
 				});
 		},
 
 		// 视频类型接口:
 		getVideo(id, type) {
-			fetch(`http://${window.location.host}/api/imagevideo/getApiVideo?o_id=${id}&img_type_id=${type}`)
+			fetch(`https://${window.location.host}/api/imagevideo/getApiVideo?o_id=${id}&img_type_id=${type}`)
 				// fetch(`http://company.xphadmin.com:9091/api/imagevideo/getApiVideo?o_id=${id}&img_type_id=${type}`)
 				.then(res => {
 					return res.json();
